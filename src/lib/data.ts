@@ -1,6 +1,6 @@
 export type Location = {
   id: string;
-  name: string;
+  classNumber: string;
   type: 'class' | 'lab';
   block: string;
   floor: string;
@@ -10,7 +10,7 @@ export type Location = {
 export const locations: Location[] = [
   {
     id: 'CS101',
-    name: 'Intro to Programming',
+    classNumber: 'Intro to Programming',
     type: 'class',
     block: 'Block A',
     floor: '1st Floor',
@@ -18,7 +18,7 @@ export const locations: Location[] = [
   },
   {
     id: 'CSL-A2',
-    name: 'Data Structures Lab',
+    classNumber: 'Data Structures Lab',
     type: 'lab',
     block: 'Block A',
     floor: '2nd Floor',
@@ -26,7 +26,7 @@ export const locations: Location[] = [
   },
   {
     id: 'PHY201',
-    name: 'Modern Physics',
+    classNumber: 'Modern Physics',
     type: 'class',
     block: 'Block C',
     floor: 'Ground Floor',
@@ -34,7 +34,7 @@ export const locations: Location[] = [
   },
   {
     id: 'CHML-B1',
-    name: 'Chemistry Lab',
+    classNumber: 'Chemistry Lab',
     type: 'lab',
     block: 'Block B',
     floor: '1st Floor',
@@ -42,7 +42,7 @@ export const locations: Location[] = [
   },
   {
     id: 'MATH301',
-    name: 'Advanced Calculus',
+    classNumber: 'Advanced Calculus',
     type: 'class',
     block: 'Main Building',
     floor: '3rd Floor',
@@ -50,7 +50,7 @@ export const locations: Location[] = [
   },
   {
     id: 'ENG101',
-    name: 'Communicative English',
+    classNumber: 'Communicative English',
     type: 'class',
     block: 'Block B',
     floor: '2nd Floor',
@@ -58,7 +58,7 @@ export const locations: Location[] = [
   },
   {
     id: 'BIOL-L1',
-    name: 'Biology Lab',
+    classNumber: 'Biology Lab',
     type: 'lab',
     block: 'Block C',
     floor: '1st Floor',
@@ -66,7 +66,7 @@ export const locations: Location[] = [
   },
   {
     id: 'CS404',
-    name: 'Artificial Intelligence',
+    classNumber: 'Artificial Intelligence',
     type: 'class',
     block: 'Block A',
     floor: '3rd Floor',

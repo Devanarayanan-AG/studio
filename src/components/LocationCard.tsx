@@ -19,7 +19,7 @@ export function LocationCard({ location, index }: LocationCardProps) {
     >
       <CardHeader className="pb-4">
         <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-2">
-            <CardTitle className="text-xl font-headline">{location.name}</CardTitle>
+            <CardTitle className="text-xl font-headline">{location.id}</CardTitle>
             <Badge variant={isClass ? "default" : "secondary"} className={cn("whitespace-nowrap w-fit", isClass ? 'bg-primary/80' : '')}>
               {isClass ? <Bookmark className="mr-2 h-4 w-4" /> : <FlaskConical className="mr-2 h-4 w-4" />}
               {location.type.charAt(0).toUpperCase() + location.type.slice(1)}

@@ -20,7 +20,7 @@ export default function LocationSearch({ locations }: LocationSearchProps) {
     }
     return locations.filter(
       (location) =>
-        location.name.toLowerCase().includes(query) ||
+        location.classNumber.toLowerCase().includes(query) ||
         location.id.toLowerCase().includes(query) ||
         location.faculty.toLowerCase().includes(query)
     );
