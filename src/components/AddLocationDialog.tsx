@@ -40,7 +40,7 @@ interface AddLocationDialogProps {
 }
 
 const formSchema = z.object({
-  id: z.string().min(1, 'ID is required'),
+  id: z.string().regex(/^[0-9]+$/, 'ID must be a number').min(1, 'ID is required'),
   classNumber: z.string().min(1, 'Class Number is required'),
   type: z.enum(['class', 'lab']),
   block: z.string().min(1, 'Block is required'),
@@ -88,9 +88,9 @@ export function AddLocationDialog({ open, onOpenChange, onAddLocation }: AddLoca
               name="id"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>ID (e.g., CS102)</FormLabel>
+                  <FormLabel>ID (e.g., 101)</FormLabel>
                   <FormControl>
-                    <Input placeholder="CS102" {...field} />
+                    <Input placeholder="101" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
