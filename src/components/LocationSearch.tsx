@@ -1,17 +1,22 @@
+
 'use client';
 
 import { useState, useMemo } from 'react';
 import type { Location } from '@/lib/data';
 import { Input } from '@/components/ui/input';
 import { LocationCard } from '@/components/LocationCard';
-import { Search } from 'lucide-react';
+import { AddLocationDialog } from '@/components/AddLocationDialog';
+import { Button } from '@/components/ui/button';
+import { Search, Plus } from 'lucide-react';
 
 interface LocationSearchProps {
   locations: Location[];
+  onAddLocation: (newLocation: Location) => void;
 }
 
-export default function LocationSearch({ locations }: LocationSearchProps) {
+export default function LocationSearch({ locations, onAddLocation }: LocationSearchProps) {
   const [searchQuery, setSearchQuery] = useState('');
+  const [isAddDialogOpen, setAddDialogOpen] = useState(false);
 
   const filteredLocations = useMemo(() => {
     const query = searchQuery.toLowerCase().trim();
@@ -23,21 +28,31 @@ export default function LocationSearch({ locations }: LocationSearchProps) {
         location.classNumber.toLowerCase().includes(query) ||
         location.id.toLowerCase().includes(query) ||
         location.faculty.toLowerCase().includes(query)
-    );
+    ).sort((a, b) => a.id.localeCompare(b.id));
   }, [searchQuery, locations]);
 
   return (
     <div className="w-full max-w-3xl mx-auto">
-      <div className="relative mb-8">
-        <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-        <Input
-          type="text"
-          placeholder="Search for a class, lab, or faculty..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full bg-card pl-12 text-base md:text-lg py-6 rounded-full shadow-md focus-visible:shadow-lg focus-visible:ring-offset-2 focus-visible:ring-ring transition-shadow"
-          aria-label="Search for a location"
-        />
+      <div className="relative mb-8 flex gap-2">
+        <div className="relative flex-1">
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+          <Input
+            type="text"
+            placeholder="Search for a class, lab, or faculty..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full bg-card pl-12 text-base md:text-lg py-6 rounded-full shadow-md focus-visible:shadow-lg focus-visible:ring-offset-2 focus-visible:ring-ring transition-shadow"
+            aria-label="Search for a location"
+          />
+        </div>
+        <Button 
+          size="icon" 
+          className="rounded-full h-12 w-12 flex-shrink-0"
+          onClick={() => setAddDialogOpen(true)}
+          aria-label="Add new location"
+        >
+          <Plus className="h-6 w-6" />
+        </Button>
       </div>
 
       <div className="space-y-4">
@@ -61,6 +76,12 @@ export default function LocationSearch({ locations }: LocationSearchProps) {
            </div>
         )}
       </div>
+
+      <AddLocationDialog 
+        open={isAddDialogOpen}
+        onOpenChange={setAddDialogOpen}
+        onAddLocation={onAddLocation}
+      />
     </div>
   );
 }
